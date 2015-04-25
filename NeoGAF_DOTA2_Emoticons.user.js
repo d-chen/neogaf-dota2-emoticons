@@ -2,8 +2,8 @@
 // @name        NeoGAF DOTA2 Emoticons
 // @namespace   https://github.com/d-chen/neogaf-dota2-emoticons
 // @description Greasemonkey script to add DOTA2 Emoticons to NeoGAF reply page
-// @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @require     https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @require     http://code.jquery.com/jquery-2.1.3.min.js
+// @require     https://greasyfork.org/scripts/5392-waitforkeyelements/code/WaitForKeyElements.js?version=19641
 // @include     http://www.neogaf.com/forum/editpost.*
 // @include     http://www.neogaf.com/forum/newreply.*
 // @include     http://www.neogaf.com/forum/newthread.*
