@@ -11,5 +11,6 @@ import scrapy
 class GetdotagifItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    url = scrapy.Field()
+    id = scrapy.Field()
+    src = scrapy.Field()
     pass

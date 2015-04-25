@@ -13,5 +13,10 @@ BOT_NAME = 'getDotaGif'
 SPIDER_MODULES = ['getDotaGif.spiders']
 NEWSPIDER_MODULE = 'getDotaGif.spiders'
 
+ITEM_PIPELINES = {
+    'getDotaGif.pipelines.GetdotagifPipeline': 100,
+    'getDotaGif.pipelines.JsonWriterPipeline': 900,
+}
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'getDotaGif (+http://github.com/d-chen)'
