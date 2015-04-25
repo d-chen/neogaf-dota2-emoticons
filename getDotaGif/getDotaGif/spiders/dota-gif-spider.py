@@ -1,5 +1,5 @@
 from scrapy import Spider
-import csv
+import json
 
 raw_url = "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/"
 
@@ -10,10 +10,9 @@ def is_32_gif(url):
             return False
     return True
 
-def create_csv(myList):
-    with open('./scrape_dota2_gif_list.csv', 'wb') as myFile:
-        wr = csv.writer(myFile, quoting=csv.QUOTE_ALL)
-        wr.writerow(myList)
+def create_file(myList):
+    with open('./scrape_dota2_gif_list.txt', 'wb') as myFile:
+        json.dump(myList, myFile)
 
 class DotaGifSpider(Spider):
     name = 'dota2gif'
@@ -28,4 +27,4 @@ class DotaGifSpider(Spider):
             complete_url = raw_url + file_name
             if is_32_gif(file_name):
                 myList.append(complete_url)
-        create_csv(myList)
+        create_file(myList)
