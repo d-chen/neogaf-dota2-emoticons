@@ -7,7 +7,7 @@
 // @include     http://www.neogaf.com/forum/editpost.*
 // @include     http://www.neogaf.com/forum/newreply.*
 // @include     http://www.neogaf.com/forum/newthread.*
-// @version     1.1
+// @version     2.0
 // @grant       GM_log
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
