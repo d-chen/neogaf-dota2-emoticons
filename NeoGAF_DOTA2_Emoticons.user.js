@@ -7,7 +7,7 @@
 // @include     http://www.neogaf.com/forum/editpost.*
 // @include     http://www.neogaf.com/forum/newreply.*
 // @include     http://www.neogaf.com/forum/newthread.*
-// @version     2.0
+// @version     2.1
 // @grant       GM_log
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
@@ -34,6 +34,15 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mayatomr_laugh.gif", "id": "mayatomr_laugh"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mayatomr_romance.gif", "id": "mayatomr_romance"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mayatomr_smirk.gif", "id": "mayatomr_smirk"},
+
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/ashot_chaos.gif", "id": "ashot_chaos"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/ashot_clock.gif", "id": "ashot_clock"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/ashot_jugg.gif", "id": "ashot_jugg"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/ashot_rubick.gif", "id": "ashot_rubick"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/ashot_sven.gif", "id": "ashot_sven"},
+
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/give_diretide.gif", "id": "give_diretire"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren.gif", "id": "song_siren"},
 
   ];
 
@@ -71,7 +80,8 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/bts_godz.gif", "id": "bts_godz"},
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/bts_lina.gif", "id": "bts_lina"},
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/bts_merlini.gif", "id": "bts_merlini"},
-    {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/bts_rosh.gif", "id": "bts_rosh"}
+    {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/bts_rosh.gif", "id": "bts_rosh"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/bts_watermelon.gif", "id": "bts_watermelon"}
   ];
 
   DAC15 = [
