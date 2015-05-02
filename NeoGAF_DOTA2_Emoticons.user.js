@@ -7,7 +7,7 @@
 // @include     http://www.neogaf.com/forum/editpost.*
 // @include     http://www.neogaf.com/forum/newreply.*
 // @include     http://www.neogaf.com/forum/newthread.*
-// @version     2.1
+// @version     2.2
 // @grant       GM_log
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
@@ -43,6 +43,7 @@ if (window.top != window.self){ //don't run on frames or iframes
 
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/give_diretide.gif", "id": "give_diretire"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren.gif", "id": "song_siren"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_shopkeep.gif", "id": "mozz_shopkeep"},
 
   ];
 
