@@ -14,7 +14,7 @@ if (window.top != window.self){ //don't run on frames or iframes
 } else {
   var ARCANA, BTS, DAC15, DESPAIR,
       DOTA_CINEMA, RUNES, TI4_COMP,
-      TI4_GEMS, EXTRA_EMOTES;
+      TI4_GEMS, EXTRA_EMOTES, TI5_COMP;
 
   EXTRA_EMOTES = [//Custom or workshop emotes
     {"src": "http://i.imgur.com/cBj1LTf.png", "id": "fEEd"},
@@ -118,7 +118,8 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/haste.gif", "id": "haste"},
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/illusion.gif", "id": "illusion"},
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/invisibility.gif", "id": "invisibility"},
-    {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/regeneration.gif", "id": "regeneration"}
+    {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/regeneration.gif", "id": "regeneration"},
+    {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/bountyrune.gif", "id": "bountyrune"}
   ];
 
   TI4_GEMS = [
@@ -130,8 +131,32 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/bontscho/dota2-chat-emoticons/master/assets/images/ti4diamond.gif", "id": "ti4diamond"}
   ];
 
+  TI5_COMP = [
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/cocky.gif", "id": "cocky"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/devil.gif", "id": "devil"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/happy.gif", "id": "happy"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/cocky.gif", "id": "cocky"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/thinking.gif", "id": "thinking"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/tp.gif", "id": "tp"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/salty.gif", "id": "salty"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/angel.gif", "id": "angel"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/blink.gif", "id": "blink"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/snot.gif", "id": "snot"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/stunned.gif", "id": "stunned"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/disappear.gif", "id": "disappear"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/fire.gif", "id": "fire"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/troll.gif", "id": "troll"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/gross.gif", "id": "gross"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/ggdire.gif", "id": "ggdire"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/ggradiant.gif", "id": "ggradiant"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/yolo.gif", "id": "yolo"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/throwgame.gif", "id": "throwgame"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/aegis2015.gif", "id": "aegis2015"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/eyeroll.gif", "id": "eyeroll"},
+  ];
+
   // Swap emoticon sets around to reorder them
-  var SETS = [TI4_COMP, DESPAIR, DOTA_CINEMA, RUNES, TI4_GEMS, DAC15, BTS, ARCANA, EXTRA_EMOTES];
+  var SETS = [TI4_COMP, DESPAIR, DOTA_CINEMA, RUNES, TI4_GEMS, DAC15, BTS, ARCANA, TI5_COMP, EXTRA_EMOTES];
   var EMOTES = [];
 
   // Firefox goes faster with push() vs concat()
