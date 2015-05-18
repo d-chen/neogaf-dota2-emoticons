@@ -5,10 +5,11 @@
 // @require     http://code.jquery.com/jquery-2.1.3.min.js
 // @require     https://greasyfork.org/scripts/5392-waitforkeyelements/code/WaitForKeyElements.js?version=19641
 // @require     http://cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js
-// @include     http://www.neogaf.com/forum/editpost.*
-// @include     http://www.neogaf.com/forum/newreply.*
-// @include     http://www.neogaf.com/forum/newthread.*
-// @version     4.1
+// @include     http://*neogaf.com/forum/editpost.php*
+// @include     http://*neogaf.com/forum/newreply.php*
+// @include     http://*neogaf.com/forum/newthread.php*
+// @include     http://*neogaf.com/forum/private.php*
+// @version     4.2
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
