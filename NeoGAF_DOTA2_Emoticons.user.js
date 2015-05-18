@@ -41,7 +41,7 @@ if (window.top != window.self){ //don't run on frames or iframes
   function makeEmoteTable(em, em_width){
     var row_length = 0,
         parts = [],
-        gifs_per_row = Math.floor(textArea.offsetWidth / em_width);
+        gifs_per_row = Math.floor(parent_ele.offsetWidth / em_width);
 
     for (var i = 0; i < em.length; i++){
       if (row_length === 0){
