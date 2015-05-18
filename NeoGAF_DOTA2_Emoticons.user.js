@@ -4,19 +4,65 @@
 // @description Greasemonkey script to add DOTA2 Emoticons to NeoGAF reply page
 // @require     http://code.jquery.com/jquery-2.1.3.min.js
 // @require     https://greasyfork.org/scripts/5392-waitforkeyelements/code/WaitForKeyElements.js?version=19641
+// @require     http://cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js
 // @include     http://www.neogaf.com/forum/editpost.*
 // @include     http://www.neogaf.com/forum/newreply.*
 // @include     http://www.neogaf.com/forum/newthread.*
-// @version     3.1
-// @grant       GM_log
+// @version     4.0
+// @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
 } else {
-  var ARCANA, BTS, DAC15, DESPAIR,
-      DOTA_CINEMA, RUNES, TI4_COMP,
-      TI4_GEMS, EXTRA_EMOTES, TI5_COMP;
 
-  EXTRA_EMOTES = [//Custom or workshop emotes
+  var css =
+  ".tabs { margin: 0; padding: 0; }"+
+  ".tab { display: inline-block; zoom:1; *display:inline; border: solid 2px #666; }"+
+  ".tab a { font-size: 14px; line-height: 2em; display: block; padding: 0 10px; outline: none; }"+
+  ".tab a:hover { text-decoration: underline; }"+
+  ".tab.active { padding-top: 0px; position: relative; border-color: #999; }"+
+  ".tab a.active { font-weight: bold; }"+
+  ".tab-container .panel-container { border: solid #666 1px; height: 190px !important; overflow-y: scroll !important; }";
+
+  GM_addStyle(css);
+
+  var parent_ele = document.getElementById("vB_Editor_001"),
+      textArea = document.getElementById("vB_Editor_001_textarea"),
+      GIF_WIDTH = 40,
+      GIF_HEIGHT = 38,
+      TWITCH_WIDTH = 39,
+      MAX_HEIGHT = GIF_HEIGHT * 5;
+
+  function addGifClickHandler(dotaGif){
+    dotaGif.click(function(){
+      textArea.value += "[IMG]" + dotaGif.attr('src') + "[/IMG]";
+    });
+  }
+
+  function makeEmoteTable(em, em_width){
+    var row_length = 0,
+        parts = [],
+        gifs_per_row = Math.floor(textArea.offsetWidth / em_width);
+
+    for (var i = 0; i < em.length; i++){
+      if (row_length === 0){
+        parts.push("<tr>");
+      }
+
+      parts.push("<td align='center' id='"+ em[i].id +
+                 "'><img src='"+ em[i].src +
+                 "' class='dotaGif'></td>");
+      row_length += 1;
+
+      if (row_length === gifs_per_row){
+        parts.push("</tr>");
+        row_length = 0;
+      }
+    }
+    var result = parts.join(" ");
+    return result;
+  }
+
+  var EXTRA_EMOTES = [//Custom or workshop emotes
     {"src": "http://i.imgur.com/frBAang.png", "id": "fEEd"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_beaver.gif", "id": "anuxi_beaver"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_deal.gif", "id": "anuxi_deal"},
@@ -47,13 +93,13 @@ if (window.top != window.self){ //don't run on frames or iframes
 
   ];
 
-  ARCANA = [
+  var ARCANA = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/grave.gif", "id": "grave"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/pup.gif", "id": "pup"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/techies.gif", "id": "techies"}
   ];
 
-  TI4_COMP = [
+  var TI4_COMP = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/blush.gif", "id": "blush"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/cheeky.gif", "id": "cheeky"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/cool.gif", "id": "cool"},
@@ -76,7 +122,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/wink.gif", "id": "wink"}
   ];
 
-  BTS = [
+  var BTS = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/bts_bristle.gif", "id": "bts_bristle"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/bts_godz.gif", "id": "bts_godz"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/bts_lina.gif", "id": "bts_lina"},
@@ -85,7 +131,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/bts_watermelon.gif", "id": "bts_watermelon"}
   ];
 
-  DAC15 = [
+  var DAC15 = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_angry.gif", "id": "dac15_angry"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_embarrass.gif", "id": "dac15_embarrass"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_fade.gif", "id": "dac15_fade"},
@@ -97,7 +143,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_water.gif", "id": "dac15_water"}
   ];
 
-  DESPAIR = [
+  var DESPAIR = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/aaaah.gif", "id": "aaaah"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/burn.gif", "id": "burn"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/hide.gif", "id": "hide"},
@@ -105,7 +151,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/tears.gif", "id": "tears"}
   ];
 
-  DOTA_CINEMA = [
+  var DOTA_CINEMA = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/fail.gif", "id": "fail"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/goodjob.gif", "id": "goodjob"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/headshot.gif", "id": "headshot"},
@@ -113,7 +159,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/horse.gif", "id": "horse"}
   ];
 
-  RUNES = [
+  var RUNES = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/doubledamage.gif", "id": "doubledamage"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/haste.gif", "id": "haste"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/illusion.gif", "id": "illusion"},
@@ -122,7 +168,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/bountyrune.gif", "id": "bountyrune"}
   ];
 
-  TI4_GEMS = [
+  var TI4_GEMS = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/ti4copper.gif", "id": "ti4copper"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/ti4bronze.gif", "id": "ti4bronze"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/ti4silver.gif", "id": "ti4silver"},
@@ -131,7 +177,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/ti4diamond.gif", "id": "ti4diamond"}
   ];
 
-  TI5_COMP = [
+  var TI5_COMP = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/cocky.gif", "id": "cocky"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/devil.gif", "id": "devil"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/happy.gif", "id": "happy"},
@@ -154,9 +200,12 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/eyeroll.gif", "id": "eyeroll"},
   ];
 
+  var TWITCH_EMOTES = [{"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/4Head.png", "id": "4Head"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ANELE.png", "id": "ANELE"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ArsonNoSexy.png", "id": "ArsonNoSexy"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/AsianGlow.png", "id": "AsianGlow"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/AtGL.png", "id": "AtGL"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/AthenaPMS.png", "id": "AthenaPMS"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/AtIvy.png", "id": "AtIvy"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/AtWW.png", "id": "AtWW"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BabyRage.png", "id": "BabyRage"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BatChest.png", "id": "BatChest"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BCWarrior.png", "id": "BCWarrior"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BibleThump.png", "id": "BibleThump"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BigBrother.png", "id": "BigBrother"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BionicBunion.png", "id": "BionicBunion"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BlargNaut.png", "id": "BlargNaut"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BloodTrail.png", "id": "BloodTrail"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BORT.png", "id": "BORT"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BrainSlug.png", "id": "BrainSlug"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BrokeBack.png", "id": "BrokeBack"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/BuddhaBar.png", "id": "BuddhaBar"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/CorgiDerp.png", "id": "CorgiDerp"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/DAESuppy.png", "id": "DAESuppy"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/DansGame.png", "id": "DansGame"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/DatHass.png", "id": "DatHass"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/DatSheffy.png", "id": "DatSheffy"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/DBstyle.png", "id": "DBstyle"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/deExcite.png", "id": "deExcite"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/deIlluminati.png", "id": "deIlluminati"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/deShade.png", "id": "deShade"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/DogFace.png", "id": "DogFace"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/EleGiggle.png", "id": "EleGiggle"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/EvilFetus.png", "id": "EvilFetus"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FailFish.png", "id": "FailFish"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FPSMarksman.png", "id": "FPSMarksman"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FrankerZ.png", "id": "FrankerZ"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FreakinStinkin.png", "id": "FreakinStinkin"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FUNgineer.png", "id": "FUNgineer"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FunRun.png", "id": "FunRun"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/FuzzyOtterOO.png", "id": "FuzzyOtterOO"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/GasJoker.png", "id": "GasJoker"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/GingerPower.png", "id": "GingerPower"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/GrammarKing.png", "id": "GrammarKing"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/HassanChop.png", "id": "HassanChop"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/HeyGuys.png", "id": "HeyGuys"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/HotPokket.png", "id": "HotPokket"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/HumbleLife.png", "id": "HumbleLife"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ItsBoshyTime.png", "id": "ItsBoshyTime"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Jebaited.png", "id": "Jebaited"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/JKanStyle.png", "id": "JKanStyle"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/JonCarnage.png", "id": "JonCarnage"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/KAPOW.png", "id": "KAPOW"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Kappa.png", "id": "Kappa"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Keepo.png", "id": "Keepo"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/KevinTurtle.png", "id": "KevinTurtle"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Kippa.png", "id": "Kippa"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Kreygasm.png", "id": "Kreygasm"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/KZskull.png", "id": "KZskull"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Mau5.png", "id": "Mau5"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/mcaT.png", "id": "mcaT"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/MechaSupes.png", "id": "MechaSupes"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/MrDestructoid.png", "id": "MrDestructoid"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/MVGame.png", "id": "MVGame"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/NightBat.png", "id": "NightBat"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/NinjaTroll.png", "id": "NinjaTroll"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/NoNoSpot.png", "id": "NoNoSpot"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/noScope420.png", "id": "noScope420"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/NotAtk.png", "id": "NotAtk"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OMGScoots.png", "id": "OMGScoots"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OneHand.png", "id": "OneHand"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OpieOP.png", "id": "OpieOP"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OptimizePrime.png", "id": "OptimizePrime"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSbeaver.png", "id": "OSbeaver"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSbury.png", "id": "OSbury"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSdeo.png", "id": "OSdeo"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSfrog.png", "id": "OSfrog"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSkomodo.png", "id": "OSkomodo"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSrob.png", "id": "OSrob"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/OSsloth.png", "id": "OSsloth"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/panicBasket.png", "id": "panicBasket"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PanicVis.png", "id": "PanicVis"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PazPazowitz.png", "id": "PazPazowitz"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PeoplesChamp.png", "id": "PeoplesChamp"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PermaSmug.png", "id": "PermaSmug"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PicoMause.png", "id": "PicoMause"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PipeHype.png", "id": "PipeHype"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PJHarley.png", "id": "PJHarley"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PJSalt.png", "id": "PJSalt"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PMSTwin.png", "id": "PMSTwin"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PogChamp.png", "id": "PogChamp"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Poooound.png", "id": "Poooound"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PraiseIt.png", "id": "PraiseIt"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PRChase.png", "id": "PRChase"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/PunchTrees.png", "id": "PunchTrees"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/RaccAttack.png", "id": "RaccAttack"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/RalpherZ.png", "id": "RalpherZ"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ResidentSleeper.png", "id": "ResidentSleeper"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/RitzMitz.png", "id": "RitzMitz"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/RuleFive.png", "id": "RuleFive"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Shazam.png", "id": "Shazam"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/shazamicon.png", "id": "shazamicon"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ShazBotstix.png", "id": "ShazBotstix"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ShibeZ.png", "id": "ShibeZ"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SMOrc.png", "id": "SMOrc"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SMSkull.png", "id": "SMSkull"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SoBayed.png", "id": "SoBayed"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SoonerLater.png", "id": "SoonerLater"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SriHead.png", "id": "SriHead"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SSSsss.png", "id": "SSSsss"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/StrawBeary.png", "id": "StrawBeary"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SuperVinlin.png", "id": "SuperVinlin"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/SwiftRage.png", "id": "SwiftRage"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/tbBaconBiscuit.png", "id": "tbBaconBiscuit"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/tbChickenBiscuit.png", "id": "tbChickenBiscuit"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/tbQuesarito.png", "id": "tbQuesarito"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/tbSausageBiscuit.png", "id": "tbSausageBiscuit"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/tbSpicy.png", "id": "tbSpicy"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/tbSriracha.png", "id": "tbSriracha"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TF2John.png", "id": "TF2John"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TheTarFu.png", "id": "TheTarFu"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TheThing.png", "id": "TheThing"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/ThunBeast.png", "id": "ThunBeast"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TinyFace.png", "id": "TinyFace"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TooSpicy.png", "id": "TooSpicy"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TriHard.png", "id": "TriHard"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/TTours.png", "id": "TTours"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/UleetBackup.png", "id": "UleetBackup"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/UncleNox.png", "id": "UncleNox"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/UnSane.png", "id": "UnSane"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/Volcania.png", "id": "Volcania"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/WholeWheat.png", "id": "WholeWheat"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/WinWaker.png", "id": "WinWaker"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/WTRuck.png", "id": "WTRuck"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/WutFace.png", "id": "WutFace"}, {"src": "https://raw.githubusercontent.com/d-chen/twitch-emoticons/master/global/YouWHY.png", "id": "YouWHY"}];
+
   // Swap emoticon sets around to reorder them
   var SETS = [TI4_COMP, DESPAIR, DOTA_CINEMA, RUNES, TI4_GEMS, DAC15, BTS, ARCANA, TI5_COMP, EXTRA_EMOTES];
   var EMOTES = [];
+
 
   // Firefox goes faster with push() vs concat()
   for (var i=0; i<SETS.length; i++){
@@ -166,46 +215,33 @@ if (window.top != window.self){ //don't run on frames or iframes
     }
   }
 
-  var parent = document.getElementById("vB_Editor_001"),
-      textArea = document.getElementById("vB_Editor_001_textarea"),
-      GIF_WIDTH = 40,
-      GIF_HEIGHT = 38,
-      GIFS_PER_ROW = Math.floor(textArea.offsetWidth / GIF_WIDTH),
-      MAX_HEIGHT = GIF_HEIGHT * 5,
-      gif_row_length = 0,
-      parts = [];
+  $(function() {
+    $("#tab-container").easytabs({animate: false, defaultTab:"li:first-child", updateHash: false});
+  });
+  
+  var dota_html = makeEmoteTable(EMOTES, GIF_WIDTH);
+  var twitch_html = makeEmoteTable(TWITCH_EMOTES, TWITCH_WIDTH);
+  var tab_html =
+  '<div id="tab-container" class="tab-container">' +
+    '<ul class="tabs">' +
+      '<li class="tab"><a href="#tab-1">DOTA2</a></li>' +
+      '<li class="tab"><a href="#tab-2">Twitch</a></li>' +
+    '</ul>' +
 
-  function addGifClickHandler(dotaGif){
-    dotaGif.click(function(){
-      textArea.value += "[IMG]" + dotaGif.attr('src') + "[/IMG]";
-    });
-  }
+    '<div class="panel-container">'+
+      '<div id="tab-1">' +
+        '<table>' + dota_html + '</table>' +
+      '</div>' +
 
-  for (var i = 0; i < EMOTES.length; i++){
-    if (gif_row_length === 0){
-      parts.push("<tr>");
-    }
-
-    parts.push("<td align='center' id='"+ EMOTES[i].id +
-               "'><img src='"+ EMOTES[i].src +
-               "' class='dotaGif'></td>");
-    gif_row_length += 1;
-
-    if (gif_row_length === GIFS_PER_ROW){
-      parts.push("</tr>");
-      gif_row_length = 0;
-    }
-  }
-  var html_content = parts.join(" ");
-
-  var emoteBox = document.createElement('fieldset');
-  emoteBox.setAttribute('id',"vB_Editor_001_emote_box");
-  html_start = '<legend>DOTA 2 Emoticons</legend><div style="overflow-y:scroll; height:' +MAX_HEIGHT +'px;"><table>';
-  html_end = '</table></div>';
-  emoteBox.innerHTML = html_start + html_content + html_end;
-  //gifTable.setAttribute("height", MAX_HEIGHT + "px");
-  //gifTable.setAttribute("overflow", "auto");
-  parent.appendChild(emoteBox);
+      '<div id="tab-2">' +
+        '<table>' + twitch_html + '</table>' +
+      '</div>' +
+    '</div>'+
+  '</div>';
+  
+  var tabs = document.createElement('div');
+  tabs.innerHTML = tab_html;
+  parent_ele.appendChild(tabs);
 
   // onClick value fails in Greasemonkey
   // addEventListener fails for elements generated after page loads
