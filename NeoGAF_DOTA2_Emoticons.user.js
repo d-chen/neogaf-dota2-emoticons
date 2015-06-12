@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name        NeoGAF DOTA2 Emoticons
 // @namespace   https://github.com/d-chen/neogaf-dota2-emoticons
 // @description Greasemonkey script to add DOTA2 Emoticons to NeoGAF reply page
@@ -9,7 +9,7 @@
 // @include     http://*neogaf.com/forum/newreply.php*
 // @include     http://*neogaf.com/forum/newthread.php*
 // @include     http://*neogaf.com/forum/private.php*
-// @version     4.2
+// @version     4.3
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
@@ -64,7 +64,7 @@ if (window.top != window.self){ //don't run on frames or iframes
   }
 
   var EXTRA_EMOTES = [//Custom or workshop emotes
-    {"src": "http://i.imgur.com/frBAang.png", "id": "fEEd"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/fEEd.png", "id": "fEEd"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_beaver.gif", "id": "anuxi_beaver"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_deal.gif", "id": "anuxi_deal"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_mirana.gif", "id": "anuxi_mirana"},
@@ -90,7 +90,15 @@ if (window.top != window.self){ //don't run on frames or iframes
 
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/give_diretide.gif", "id": "give_diretire"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren.gif", "id": "song_siren"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren2.gif", "id": "song_siren2"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/spectre_what.gif", "id": "spectre_what"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_shopkeep.gif", "id": "mozz_shopkeep"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/cm1.gif", "id": "cm1"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/cm2.gif", "id": "cm2"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/cm3.gif", "id": "cm3"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/lina1.gif", "id": "lina1"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/lina2.gif", "id": "lina2"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/lina3.gif", "id": "lina3"},
 
   ];
 
@@ -134,12 +142,20 @@ if (window.top != window.self){ //don't run on frames or iframes
 
   var DAC15 = [
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_angry.gif", "id": "dac15_angry"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_blush.gif", "id": "dac15_blush"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_cool.gif", "id": "dac15_cool"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_embarrass.gif", "id": "dac15_embarrass"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_duel.gif", "id": "dac15_duel"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_face.gif", "id": "dac15_face"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_fade.gif", "id": "dac15_fade"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_frog.gif", "id": "dac15_frog"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_fantastic.gif", "id": "dac15_fantastic"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_nosewipe.gif", "id": "dac15_nosewipe"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_sad.gif", "id": "dac15_sad"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_stab.gif", "id": "dac15_stab"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_surprise.gif", "id": "dac15_surprise"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_tired.gif", "id": "dac15_tired"},
+    {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_transform.gif", "id": "dac15_transform"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_upset.gif", "id": "dac15_upset"},
     {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_water.gif", "id": "dac15_water"}
   ];
@@ -219,7 +235,7 @@ if (window.top != window.self){ //don't run on frames or iframes
   $(function() {
     $("#tab-container").easytabs({animate: false, defaultTab:"li:first-child", updateHash: false});
   });
-  
+
   var dota_html = makeEmoteTable(EMOTES, GIF_WIDTH);
   var twitch_html = makeEmoteTable(TWITCH_EMOTES, TWITCH_WIDTH);
   var tab_html =
@@ -239,7 +255,7 @@ if (window.top != window.self){ //don't run on frames or iframes
       '</div>' +
     '</div>'+
   '</div>';
-  
+
   var tabs = document.createElement('div');
   tabs.innerHTML = tab_html;
   parent_ele.appendChild(tabs);
