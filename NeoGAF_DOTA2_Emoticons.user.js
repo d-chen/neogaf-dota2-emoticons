@@ -65,7 +65,7 @@ if (window.top != window.self){ //don't run on frames or iframes
 
   var EXTRA_EMOTES = [//Custom or workshop emotes
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/fEEd.png", "id": "fEEd"},
-	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/dendiFace.png", "id": "dendiFace"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/dendiFace.PNG", "id": "dendiFace"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_beaver.gif", "id": "anuxi_beaver"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_deal.gif", "id": "anuxi_deal"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/anuxi_mirana.gif", "id": "anuxi_mirana"},
