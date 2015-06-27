@@ -9,7 +9,7 @@
 // @include     http://*neogaf.com/forum/newreply.php*
 // @include     http://*neogaf.com/forum/newthread.php*
 // @include     http://*neogaf.com/forum/private.php*
-// @version     4.7
+// @version     4.8
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
@@ -92,8 +92,14 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/give_diretide.gif", "id": "give_diretire"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren.gif", "id": "song_siren"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren2.gif", "id": "song_siren2"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/song_siren3.gif", "id": "song_siren3"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/spectre_what.gif", "id": "spectre_what"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_deny.gif", "id": "mozz_deny"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_feed.gif", "id": "mozz_feed"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_kiss.gif", "id": "mozz_kiss"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_morph.gif", "id": "mozz_morph"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_shopkeep.gif", "id": "mozz_shopkeep"},
+	{"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/mozz_tusklol.gif", "id": "mozz_tusklol"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/rook_rng.gif", "id": "rook_rng"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/cm1.gif", "id": "cm1"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/cm2.gif", "id": "cm2"},
