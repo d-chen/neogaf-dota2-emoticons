@@ -9,7 +9,7 @@
 // @include     http://*neogaf.com/forum/newreply.php*
 // @include     http://*neogaf.com/forum/newthread.php*
 // @include     http://*neogaf.com/forum/private.php*
-// @version     4.8
+// @version     4.9
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
