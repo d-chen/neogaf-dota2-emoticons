@@ -9,7 +9,7 @@
 // @include     http://*neogaf.com/forum/newreply.php*
 // @include     http://*neogaf.com/forum/newthread.php*
 // @include     http://*neogaf.com/forum/private.php*
-// @version     4.9
+// @version     4.10
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self){ //don't run on frames or iframes
@@ -107,6 +107,7 @@ if (window.top != window.self){ //don't run on frames or iframes
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/lina1.gif", "id": "lina1"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/lina2.gif", "id": "lina2"},
     {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/lina3.gif", "id": "lina3"},
+    {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/unofficial-gifs/luna_sparkle.gif", "id": "luna_sparkle"},
 
   ];
 
