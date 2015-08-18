@@ -9,7 +9,7 @@
 // @include     http://*neogaf.com/forum/newreply.php*
 // @include     http://*neogaf.com/forum/newthread.php*
 // @include     http://*neogaf.com/forum/private.php*
-// @version     5.2
+// @version     5.3
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self) { //don't run on frames or iframes
@@ -68,7 +68,6 @@ if (window.top != window.self) { //don't run on frames or iframes
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/hide.gif", "id": "hide"},
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_nosewipe.gif", "id": "dac15_nosewipe"},
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_tired.gif", "id": "dac15_tired"},
-        {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/blink.gif", "id": "blink"},
 
         //ANCIENT APPARITION
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_blush.gif", "id": "dac15_blush"},
@@ -78,6 +77,7 @@ if (window.top != window.self) { //don't run on frames or iframes
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/laugh.gif", "id": "laugh"},
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/charm_laugh.gif", "id": "charm_laugh"},
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/dac15_frog.gif", "id": "dac15_frog"},
+        {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/blink.gif", "id": "blink"},
 
         //AXE
         {"src": "https://raw.githubusercontent.com/d-chen/dota2-chat-emoticons/master/assets/images/rage.gif", "id": "rage"},
@@ -332,7 +332,7 @@ if (window.top != window.self) { //don't run on frames or iframes
         {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/gifs/misc-shag.gif", "id": "misc-shag"},
         {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/gifs/misc-shopkeep.gif", "id": "misc-shopkeep"},
         {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/gifs/misc-moneybag.gif", "id": "misc-moneybag"},
-    
+        {"src": "https://raw.githubusercontent.com/d-chen/neogaf-dota2-emoticons/master/gifs/misc-frog.gif", "id": "misc-frog"},
     ];
 
     var RUNES = [
