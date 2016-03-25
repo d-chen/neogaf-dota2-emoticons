@@ -2,9 +2,9 @@
 // @name        NeoGAF DOTA2 Emoticons
 // @namespace   https://github.com/d-chen/neogaf-dota2-emoticons
 // @description Greasemonkey script to add DOTA2 Emoticons to NeoGAF reply page
-// @require     //code.jquery.com/jquery-2.1.3.min.js
-// @require     //greasyfork.org/scripts/5392-waitforkeyelements/code/WaitForKeyElements.js?version=19641
-// @require     //cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js
+// @require     http://code.jquery.com/jquery-2.1.3.min.js
+// @require     https://greasyfork.org/scripts/5392-waitforkeyelements/code/WaitForKeyElements.js?version=19641
+// @require     http://cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js
 // @include     http://*neogaf.com/forum/editpost.php*
 // @include     http://*neogaf.com/forum/newreply.php*
 // @include     http://*neogaf.com/forum/newthread.php*
@@ -13,7 +13,7 @@
 // @include     https://*neogaf.com/forum/newreply.php*
 // @include     https://*neogaf.com/forum/newthread.php*
 // @include     https://*neogaf.com/forum/private.php*
-// @version     6.9
+// @version     6.91
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self) { //don't run on frames or iframes
