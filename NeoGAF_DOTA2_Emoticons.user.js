@@ -13,7 +13,7 @@
 // @include     https://*neogaf.com/forum/newreply.php*
 // @include     https://*neogaf.com/forum/newthread.php*
 // @include     https://*neogaf.com/forum/private.php*
-// @version     6.93
+// @version     7.0
 // @grant       GM_addStyle
 // ==/UserScript==
 if (window.top != window.self) { //don't run on frames or iframes
